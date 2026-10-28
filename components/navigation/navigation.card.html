@@ -1,0 +1,20 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Navigation" subtitle="Sidebar, ThemeToggle, SectionHead" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{padding:24px;background:var(--bg)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.lbl{font:11px var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px}.stack{display:flex;flex-direction:column;gap:20px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const NS=window.RENDataDesignSystem_372f57;
+const {Sidebar,SectionHead}=NS;
+function App(){const [p,setP]=React.useState('work');const [t,setT]=React.useState('light');
+React.useEffect(()=>{document.documentElement.dataset.theme=t},[t]);
+const items=[{id:'home',label:'Home'},{id:'work',label:'Work'},{id:'play',label:'Play'},{id:'blog',label:'Blog'},{id:'about',label:'About'}];
+return <div style={{display:'flex',gap:32,height:472,margin:-24}}>
+<div style={{height:472,display:'flex'}}><Sidebar avatar="../../assets/img/avatar.png" tagline="Carrying aid data from messy source to actionable insight." items={items} active={p} onNavigate={setP} social={[{label:'GitHub',href:'#'},{label:'RSS',href:'#'},{label:'LinkedIn',href:'#'}]} theme={t} onToggleTheme={()=>setT(t==='dark'?'light':'dark')}/></div>
+<div style={{flex:1,paddingTop:40,paddingRight:24,display:'flex',flexDirection:'column',gap:32}}><div><p className="lbl">SectionHead</p><SectionHead title="Work" moreLabel="All work projects"/></div>
+<div><p className="lbl">Sidebar · compact</p><div style={{margin:'0 -24px 0 0'}}><Sidebar compact avatar="../../assets/img/avatar.png" items={items.slice(0,4)} active={p} onNavigate={setP} theme={t} onToggleTheme={()=>setT(t==='dark'?'light':'dark')}/></div></div></div>
+</div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

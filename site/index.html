@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>REN Data design system</title><script>document.documentElement.dataset.theme=localStorage.getItem('ren-docs-theme')||'light'</script><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="docs.css"></head>
+<body data-page="index.html"><div class="d-layout"><aside class="d-side" id="side"></aside><main class="d-main" id="main">
+<p class="d-eyebrow">REN Data · Design system</p>
+<h1 class="d-hero">The REN Data design system</h1>
+<p class="d-lead">Tokens, components and patterns for rendata.nl, the data-visualisation style guide and the colour picker. Factual and to the point, but personal: data work is people work.</p>
+<ul class="toc">
+<li><a href="tokens.html">Tokens</a><p>Colour, type, spacing, shape and motion as CSS custom properties, read straight from the token files.</p></li>
+<li><a href="components.html">Components</a><p>19 React components with live examples, JSX you can copy and the full props for each.</p></li>
+<li><a href="patterns.html">Patterns</a><p>Components combined the way the sites use them: section heads with project grids, filtered lists, key figures, style-guide rules.</p></li>
+<li><a href="pages.html">Pages</a><p>Click-through recreations of rendata.nl and the style guide with colour picker.</p></li>
+</ul>
+<section class="d-sec" id="use" data-nav="Use it">
+<h2>Use it</h2>
+<p class="d-desc">Load the stylesheet, React and the compiled bundle, then take components from the namespace.</p>
+<pre data-code>
+&lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+&lt;script src="_ds_bundle.js"&gt;&lt;/script&gt;
+</pre>
+<pre data-code>
+const { Button, ProjectCard, SectionHead } = window.RENDataDesignSystem_372f57;
+
+function Work() {
+  return (
+    &lt;section&gt;
+      &lt;SectionHead title="Work" moreLabel="All work projects" moreHref="/work/" /&gt;
+      &lt;ProjectCard title="IATI quality checker" year="2025" summary="Runs the quality checks IATI's own validator doesn't make." /&gt;
+      &lt;Button href="/about/"&gt;Get in touch&lt;/Button&gt;
+    &lt;/section&gt;
+  );
+}
+</pre>
+<p class="d-note">Dark mode: set <code>data-theme="dark"</code> on <code>&lt;html&gt;</code>. Every semantic token switches with it.</p>
+</section>
+<section class="d-sec" id="foundations" data-nav="Foundations">
+<h2>Foundations</h2>
+<div class="facts">
+<div><h3>Colour</h3><p>Primary Teal is the brand. Coral is the single accent and means "look here". Everything else is neutral.</p></div>
+<div><h3>Type</h3><p>Newsreader for the voice, IBM Plex Sans for reading and UI, IBM Plex Mono for metadata.</p></div>
+<div><h3>Corners</h3><p>3px is the maximum anywhere. Buttons, filter tabs and tag keys are square. Only the avatar is round.</p></div>
+<div><h3>Borders</h3><p>1px hairlines, no drop shadows. Cards only for discrete objects; lists are ruled lines.</p></div>
+<div><h3>Motion</h3><p>0.15s colour and border transitions. The 404 tide is the only animation.</p></div>
+<div><h3>Voice</h3><p>First person singular, sentence case, British spelling. Titles carry the message.</p></div>
+</div>
+</section>
+</main></div><script src="docs.js"></script><script>DOCS.init()</script></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tokens · REN Data design system</title><script>document.documentElement.dataset.theme=localStorage.getItem('ren-docs-theme')||'light'</script><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="docs.css"></head>
+<body data-page="tokens.html"><div class="d-layout"><aside class="d-side" id="side"></aside><main class="d-main" id="main">
+<p class="d-eyebrow">Tokens</p>
+<h1 class="d-hero">Tokens</h1>
+<p class="d-lead">Every value is a CSS custom property, read on this page from <code>tokens/*.css</code>. Click a name to copy it as <code>var(--name)</code>.</p>
+<section class="d-sec" id="colour" data-nav="Colour" data-group="Colour"><h2>Colour</h2><p class="d-desc">Brand and neutral colours for UI. Data colours only on data, in a fixed order.</p><div id="t-colour"></div>
+<pre data-code>
+&lt;p style={{ color: "var(--muted)", borderTop: "1px solid var(--line)", paddingTop: 8 }}&gt;
+  Source: ACAPS, March 2026
+&lt;/p&gt;
+</pre></section>
+<section class="d-sec" id="ramps" data-nav="Ramps" data-group="Colour"><h2>Ramps</h2><p class="d-desc">Light (1) to dark (10). Step 6 is the base colour. Use for sequential and diverging scales.</p><div id="t-ramps"></div></section>
+<section class="d-sec" id="semantic" data-nav="Semantic" data-group="Colour"><h2>Semantic</h2><p class="d-desc">Use these in UI, never the raw palette. Each has a light and a dark value.</p><div class="props-wrap" id="t-semantic"></div></section>
+<section class="d-sec" id="type" data-nav="Type" data-group="Type &amp; space"><h2>Type</h2><p class="d-desc">Serif for the voice, sans for reading, mono for facts about facts.</p><div id="t-type"></div>
+<pre data-code>
+&lt;h2 style={{ fontFamily: "var(--font-serif)", fontSize: "var(--fs-h2)", letterSpacing: "var(--tracking-display)" }}&gt;
+  Incidents fell by a third after the ceasefire
+&lt;/h2&gt;
+&lt;p style={{ font: "var(--fs-meta)/var(--lh-small) var(--font-mono)", color: "var(--muted)" }}&gt;
+  14 October 2026
+&lt;/p&gt;
+</pre></section>
+<section class="d-sec" id="spacing" data-nav="Spacing" data-group="Type &amp; space"><h2>Spacing</h2><p class="d-desc">Rhythmic, not uniform: related things sit tight, groups breathe, sections get real air.</p><div id="t-spacing"></div>
+<pre data-code>
+&lt;section style={{ display: "grid", gap: "var(--gap-related)", marginTop: "var(--gap-section)" }}&gt;
+  &lt;SectionHead title="Latest writing" moreLabel="All posts" moreHref="/blog/" /&gt;
+  &lt;PostList posts={posts} /&gt;
+&lt;/section&gt;
+</pre></section>
+<section class="d-sec" id="shape" data-nav="Shape &amp; motion" data-group="Type &amp; space"><h2>Shape &amp; motion</h2><p class="d-desc">3px is the maximum radius. Hairlines instead of shadows.</p><div id="t-shape"></div></section>
+</main></div><script src="docs.js"></script><script src="tokens.js"></script><script>DOCS.init()</script></body></html>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 540" width="660" height="540" font-family="IBM Plex Sans, Calibri, Segoe UI, Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Anatomy of a chart</title>
+  <desc id="d">A clustered column chart with numbered markers for each layout element: figure number, title, subtitle, legend, y-axis title, gridlines, data label, axis values, x-axis title, source, note and logo.</desc>
+  <rect width="660" height="540" fill="#ffffff"></rect>
+
+  
+  <text x="48" y="36" font-size="13" fill="#191919">Figure 3</text>
+  <text x="48" y="66" font-size="22" font-weight="700" fill="#191919">Group C scores highest, and keeps improving</text>
+  <text x="48" y="90" font-size="15" fill="#191919">Average score (0–100) by group, 2023–2025</text>
+
+  
+  <rect x="48" y="110" width="12" height="12" fill="#338877"></rect><text x="66" y="121" font-size="13" fill="#191919">Group A</text>
+  <rect x="136" y="110" width="12" height="12" fill="#FFDD77"></rect><text x="154" y="121" font-size="13" fill="#191919">Group B</text>
+  <rect x="224" y="110" width="12" height="12" fill="#2B5B9B"></rect><text x="242" y="121" font-size="13" fill="#191919">Group C</text>
+
+  
+  <text x="48" y="150" font-size="13" fill="#191919">Score</text>
+
+  
+  <g stroke="#ECECEC" stroke-width="1">
+    <line x1="80" y1="170" x2="610" y2="170"></line>
+    <line x1="80" y1="227.5" x2="610" y2="227.5"></line>
+    <line x1="80" y1="285" x2="610" y2="285"></line>
+    <line x1="80" y1="342.5" x2="610" y2="342.5"></line>
+  </g>
+  <line x1="80" y1="400" x2="610" y2="400" stroke="#B8B8B8" stroke-width="1"></line>
+  <g font-size="13" fill="#191919" text-anchor="end">
+    <text x="70" y="174">80</text><text x="70" y="231.5">60</text><text x="70" y="289">40</text><text x="70" y="346.5">20</text><text x="70" y="404">0</text>
+  </g>
+
+  
+  <g>
+    <rect x="114" y="247.6" width="38" height="152.4" fill="#338877"></rect>
+    <rect x="154" y="210.3" width="38" height="189.7" fill="#FFDD77"></rect>
+    <rect x="194" y="184.4" width="38" height="215.6" fill="#2B5B9B"></rect>
+    <rect x="290" y="241.9" width="38" height="158.1" fill="#338877"></rect>
+    <rect x="330" y="210.3" width="38" height="189.7" fill="#FFDD77"></rect>
+    <rect x="370" y="181.5" width="38" height="218.5" fill="#2B5B9B"></rect>
+    <rect x="466" y="247.6" width="38" height="152.4" fill="#338877"></rect>
+    <rect x="506" y="224.6" width="38" height="175.4" fill="#FFDD77"></rect>
+    <rect x="546" y="175.8" width="38" height="224.2" fill="#2B5B9B"></rect>
+  </g>
+  
+  <g font-size="13" font-weight="600" fill="#191919" text-anchor="middle">
+    <text x="213" y="178">75</text><text x="389" y="175">76</text><text x="565" y="169">78</text>
+  </g>
+
+  
+  <g font-size="13" fill="#191919" text-anchor="middle">
+    <text x="173" y="422">2023</text><text x="349" y="422">2024</text><text x="525" y="422">2025</text>
+    <text x="345" y="450">Year</text>
+  </g>
+
+  
+  <text x="48" y="490" font-size="11" fill="#191919">Source: Example survey, 2023–2025</text>
+  <text x="48" y="510" font-size="11" fill="#191919">Note: Group C sample changed in 2024.</text>
+  <rect x="548" y="478" width="62" height="34" rx="4" fill="#1C6758"></rect>
+  <text x="579" y="500" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">LOGO</text>
+
+  
+  <g font-size="11" font-weight="700" text-anchor="middle" fill="#191919">
+    <circle cx="24" cy="32" r="10" fill="#FF9779"></circle><text x="24" y="36">1</text>
+    <circle cx="24" cy="60" r="10" fill="#FF9779"></circle><text x="24" y="64">2</text>
+    <circle cx="24" cy="86" r="10" fill="#FF9779"></circle><text x="24" y="90">3</text>
+    <circle cx="24" cy="116" r="10" fill="#FF9779"></circle><text x="24" y="120">4</text>
+    <circle cx="24" cy="146" r="10" fill="#FF9779"></circle><text x="24" y="150">5</text>
+    <circle cx="634" cy="227.5" r="10" fill="#FF9779"></circle><text x="634" y="231.5">6</text>
+    <circle cx="610" cy="152" r="10" fill="#FF9779"></circle><text x="610" y="156">7</text>
+    <circle cx="24" cy="286" r="10" fill="#FF9779"></circle><text x="24" y="290">8</text>
+    <circle cx="634" cy="418" r="10" fill="#FF9779"></circle><text x="634" y="422">8</text>
+    <circle cx="305" cy="446" r="10" fill="#FF9779"></circle><text x="305" y="450">9</text>
+    <circle cx="24" cy="486" r="10" fill="#FF9779"></circle><text x="24" y="490">10</text>
+    <circle cx="24" cy="506" r="10" fill="#FF9779"></circle><text x="24" y="510">11</text>
+    <circle cx="530" cy="495" r="10" fill="#FF9779"></circle><text x="530" y="499">12</text>
+  </g>
+</svg>

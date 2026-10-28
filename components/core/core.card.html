@@ -1,0 +1,18 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core" subtitle="Button, Chip, Tag, Eyebrow" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{padding:24px;background:var(--bg)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.lbl{font:11px var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px}.stack{display:flex;flex-direction:column;gap:20px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const NS=window.RENDataDesignSystem_372f57;
+const {Button,Chip,ChipRow,Tag,Eyebrow}=NS;
+function App(){const [f,setF]=React.useState('All');return <div className="stack">
+<div><p className="lbl">Button</p><div className="row"><Button>Work</Button><Button variant="outline">Play</Button><Button variant="quiet">Copy hex codes</Button><Button busy>Checking 1,284 activities</Button><Button disabled>Export</Button><Button size="sm">Small</Button><Button size="sm" variant="outline">Small outline</Button></div></div>
+<div><p className="lbl">Chip · underline filter</p><ChipRow>{['All','Python','Data quality','IATI','Power BI'].map((t,i)=><Chip key={t} count={[null,4,1,1,1][i]} pressed={f===t} onClick={()=>setF(t)}>{t}</Chip>)}</ChipRow></div>
+<div className="row" style={{gap:40}}><div><p className="lbl">Tag</p><div className="row" style={{gap:"4px 14px"}}><Tag>Python</Tag><Tag>Office JS</Tag><Tag tone="plain">Draft</Tag><Tag tone="strong">Featured</Tag></div></div>
+<div><p className="lbl">Eyebrow</p><div className="stack" style={{gap:6}}><Eyebrow>14 October 2026</Eyebrow><Eyebrow mark>404 · Page not found</Eyebrow></div></div></div>
+</div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

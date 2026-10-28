@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" viewport="700x640" name="Content" subtitle="ProjectCard, PostList, BigNumber, Callout, RulePair, ProjectNote, Swatch" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{padding:24px;background:var(--bg)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.lbl{font:11px var(--font-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px}.stack{display:flex;flex-direction:column;gap:20px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const NS=window.RENDataDesignSystem_372f57;
+const {ProjectCard,PostList,BigNumber,Callout,RulePair,ProjectNote,Swatch}=NS;
+function App(){return <div className="stack">
+<div style={{display:'grid',gridTemplateColumns:'repeat(3,minmax(0,1fr))',gap:20}}>
+<ProjectCard dense title="IATI Scout" year="2026" summary="Retrieves IATI aid data for one organisation and runs the quality checks IATI's own validator doesn't make." tags={['Python','Data quality','IATI']} showTags/>
+<ProjectCard dense title="HDX location data" year="2026" summary="An auto-refreshing location reference — admin units, p-codes and coordinates — from HDX into Databricks and Power BI." tags={['Python','Databricks']} showTags/>
+<ProjectCard dense title="acaps" year="2023" summary="An R wrapper for the ACAPS API." tags={['R','API']} showTags/></div>
+<div style={{display:'flex',gap:16,flexWrap:'wrap'}}><BigNumber label="Security incidents, March 2026" value="112" trend="up" context="+24% on the 12-month average"/><BigNumber label="Missions denied or delayed" value="27%" context="About 1 in every 4 planned missions"/></div>
+<div><Callout kind="rule">Bars and areas start at zero.</Callout><Callout kind="why">Easy-to-read visuals are trusted more, whether or not they are correct.</Callout></div>
+<RulePair doItems={['Label data directly.','Order categories by value, by time, or key category first.']} avoidItems={['Pie charts with many similar-sized slices.','Background features drawn stronger than the data.','Making the reader go back and forth between legend and data.']}/>
+<div style={{display:'grid',gridTemplateColumns:'1.2fr 1fr',gap:24,alignItems:'start'}}><PostList posts={[{title:"Checks that IATI's validator doesn't make",date:'14 Oct 2026',description:'Eleven rules I run before trusting a publisher file.'},{title:'Porting ExcelStarch from VBA to Office JS',date:'2 Sep 2026'}]}/>
+<ProjectNote title="IATI Scout" summary="Runs the quality checks IATI's own validator doesn't make."/></div>
+<div style={{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:8}}><Swatch name="Primary Teal" hex="#1C6758" ink="#FFFFFF" height={72}/><Swatch name="Coral" hex="#FF9779" height={72}/><Swatch name="Jasmine" hex="#FFDD77" height={72}/><Swatch name="Baltic" hex="#2B5B9B" ink="#FFFFFF" height={72}/><Swatch name="Corall" height={72}/></div>
+</div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

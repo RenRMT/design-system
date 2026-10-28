@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pages · REN Data design system</title><script>document.documentElement.dataset.theme=localStorage.getItem('ren-docs-theme')||'light'</script><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="docs.css"></head>
+<body data-page="pages.html"><div class="d-layout"><aside class="d-side" id="side"></aside><main class="d-main" id="main">
+<p class="d-eyebrow">Pages</p>
+<h1 class="d-hero">Pages</h1>
+<p class="d-lead">Click-through recreations of the live sites, built only from the components and tokens in this system.</p>
+<section class="d-sec" id="website" data-nav="rendata.nl">
+<h2>rendata.nl</h2>
+<p class="d-desc">Personal hub: Home, Work, Play (tag filters and empty state), Blog grouped by year, Post, About and the 404 tide.</p>
+<div class="frame"><div class="frame-bar"><span>ui_kits/website/index.html</span><a href="../ui_kits/website/index.html" target="_blank" rel="noopener">Open the website full screen</a></div><iframe src="../ui_kits/website/index.html" title="rendata.nl UI kit" loading="lazy"></iframe></div>
+<h3>Page layout</h3>
+<p class="d-note">A 272px sidebar beside a content column capped at 1100px. Under 860px the sidebar becomes a top bar.</p>
+<pre data-code>
+function WorkPage({ projects }) {
+  const [tag, setTag] = React.useState("All");
+  const shown = tag === "All" ? projects : projects.filter((p) =&gt; p.tags.includes(tag));
+  return (
+    &lt;div style={{ display: "grid", gridTemplateColumns: "var(--sidebar-width) minmax(0, 1fr)" }}&gt;
+      &lt;Sidebar name="Renze Terpstra" items={nav} active="work" /&gt;
+      &lt;main style={{ padding: "var(--main-pad)", maxWidth: "var(--main-max)" }}&gt;
+        &lt;Eyebrow mark&gt;Work&lt;/Eyebrow&gt;
+        &lt;h1&gt;Tools that make aid data work&lt;/h1&gt;
+        &lt;ChipRow label="Filter projects"&gt;
+          {["All", "Python", "IATI"].map((t) =&gt; (
+            &lt;Chip key={t} pressed={tag === t} onClick={() =&gt; setTag(t)}&gt;{t}&lt;/Chip&gt;
+          ))}
+        &lt;/ChipRow&gt;
+        &lt;div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 20 }}&gt;
+          {shown.map((p) =&gt; &lt;ProjectCard key={p.title} {...p} dense /&gt;)}
+        &lt;/div&gt;
+      &lt;/main&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+</section>
+<section class="d-sec" id="style-guide" data-nav="Style guide">
+<h2>Style guide and colour picker</h2>
+<p class="d-desc">The data-visualisation style guide and the colour picker share one docs frame: Guide home, Principles (Callout, RulePair, BigNumber) and Colour (Swatch rows, sequential and diverging builders, config-error Alert).</p>
+<div class="frame"><div class="frame-bar"><span>ui_kits/style-guide/index.html</span><a href="../ui_kits/style-guide/index.html" target="_blank" rel="noopener">Open the style guide full screen</a></div><iframe src="../ui_kits/style-guide/index.html" title="Style guide UI kit" loading="lazy"></iframe></div>
+<h3>Principle page</h3>
+<pre data-code>
+function PrinciplePage() {
+  return (
+    &lt;article style={{ maxWidth: "var(--measure)", display: "grid", gap: "var(--gap-group)" }}&gt;
+      &lt;Eyebrow&gt;Principles&lt;/Eyebrow&gt;
+      &lt;h1&gt;Use one colour, plus grey&lt;/h1&gt;
+      &lt;Callout kind="rule"&gt;Highlight the series that carries the message in Teal. Everything else is Steel.&lt;/Callout&gt;
+      &lt;RulePair doItems={doList} avoidItems={avoidList} /&gt;
+      &lt;BigNumber label="Security incidents, March 2026" value="112" context="+24% on the 12-month average" trend="up" /&gt;
+    &lt;/article&gt;
+  );
+}
+</pre>
+</section>
+</main></div><script src="docs.js"></script><script>DOCS.init()</script></body></html>
