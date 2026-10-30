@@ -13,6 +13,7 @@ Explore these repos further when building something new; the style guide's `docs
 - **rendata.nl** — personal hub: Home, Work, Play, Blog, About, 404. Sidebar layout, light/dark.
 - **Style guide** (rendata.nl/style-guide) — docs site for charts and maps.
 - **Colour picker** (rendata.nl/color-picker) — swatches, ramps, sequential and diverging builders, CSS export.
+- **Dashboards** — web dashboards and Power BI reports in the REN brand. See *Dashboards* below.
 
 ## Index
 - `styles.css` — entry point; imports `tokens/fonts.css`, `colors.css`, `typography.css`, `spacing.css`, `base.css`
@@ -23,7 +24,9 @@ Explore these repos further when building something new; the style guide's `docs
 - `ui_kits/website/` — rendata.nl click-through
 - `ui_kits/style-guide/` — style guide + colour picker click-through
 - `SKILL.md`, `github.md`
-- `site/` — public docs site (Overview, Tokens, Components, Patterns, Pages); `index.html` at the root redirects to it
+- `dashboards/` — `dashboard.css` (canvas, grid, tiles, KPI tiles, status markers, rail, notes, states, table, footer) and `powerbi/ren-data.theme.json`
+- `ui_kits/dashboard/` — example overview page at 1920 × 1080
+- `site/` — public docs site (Overview, Tokens, Components, Patterns, Dashboards, Pages); `index.html` at the root redirects to it
 
 ## Publishing the docs site
 Push the whole project to the `design-system` repo, then Settings → Pages → Deploy from branch → `main` / root. `.nojekyll` must stay: without it GitHub Pages hides `_ds_bundle.js`. Tokens and props are read live from `tokens/*.css` and `components/**/*.d.ts`; component examples live in `site/components.js` and `site/patterns.js`. After changing components, re-export so the committed `_ds_bundle.js` is current.
@@ -102,6 +105,20 @@ Hierarchy goes serif → sans semibold → mono, so levels look different, not j
 **Signature motifs.** The coral square (one highlighted data point among grey ones), mono metadata, hatching for absence, the tide.
 
 ---
+
+## Dashboards
+
+The style guide (`docs/dashboards/`) owns how data is shown on a dashboard; this system owns the interface around it and how to build it. Docs: `site/dashboards.html`.
+
+- **Canvas.** 1920 × 1080, 16 columns of 102px, 24px margin, 16px gutter (`--dash-*` tokens). Overview pages: header 96, filter rail of 4 columns, KPI row 152, main band 424, support band 288, footer line at y 1032. Detail pages swap the rail for a 64px subject bar and start content at y 200. Eight visuals at most.
+- **Surfaces.** Canvas Light Grey (`--dash-canvas`); every visual on a white tile with a 1px `--line` hairline, 3px corners, no shadow. No coloured header band.
+- **Status colours.** On track Baltic ✓, Watch Jasmine !, Off track Cherry ✕, Completed Sky ◍, No data Steel –. Always a square marker with the sign in ink, plus a word. Tints for cells. They double as data colours, so a chart encodes status or categories, never both; category charts on a status page use Teal and its ramp, Coral, Violet or Blush, plus Steel.
+- **KPI tile** = BigNumber: teal 4px top rule, status colour when the tile has a status. Coral stays the interface accent, never a status.
+- **Type.** Plex Sans on the web (mono for metadata); Calibri in Power BI, which renders only installed fonts. No Newsreader on dashboards. Nothing under 14px / 10.5pt.
+- **Power BI.** `ren-data.theme.json` sets colours, Calibri, tiles, ruled tables, coral buttons, underline page tabs. Positions, conditional formatting, the header and the rail are built per report; the deviations are listed on the docs page.
+- **Source.** Reconciled from a Power BI report standard used at work (grid, component list, empty states, status logic), translated into REN tokens. The work standard's own brand and DAX are not part of this system.
+
+The bundle is unchanged: dashboards are CSS and a theme file, not React components.
 
 ## Iconography
 

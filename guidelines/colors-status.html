@@ -1,0 +1,12 @@
+<!-- @dsCard group="Colors" viewport="700x300" name="Status colours" subtitle="Dashboards only. One meaning each, always a square with a sign and a word" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../dashboards/dashboard.css"><style>body{padding:20px 24px;background:var(--bg)}.m{font:11px/1.4 var(--font-mono);color:var(--muted)}.g{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.sw{display:flex;flex-direction:column;justify-content:space-between;padding:8px;border-radius:3px;box-shadow:var(--hairline);font-size:12px;line-height:1.3;min-height:96px}.sw b{font-weight:600}.sw span{font:11px var(--font-mono)}.tint{margin-top:6px;padding:6px 8px;border-radius:3px;font:11px var(--font-mono);color:var(--ink)}.row{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}</style></head><body>
+<div class="g">
+<div><div class="sw" style="background:var(--status-on-track);color:var(--status-on-track-ink)"><b>✓ On track</b><span>Baltic #2B5B9B</span></div><div class="tint" style="background:var(--status-on-track-bg)">cell #D5DEEB</div></div>
+<div><div class="sw" style="background:var(--status-watch);color:var(--status-watch-ink)"><b>! Watch</b><span>Jasmine #FFDD77</span></div><div class="tint" style="background:var(--status-watch-bg)">cell #FFF1C9</div></div>
+<div><div class="sw" style="background:var(--status-off-track);color:var(--status-off-track-ink)"><b>✕ Off track</b><span>Cherry #BC3C4C</span></div><div class="tint" style="background:var(--status-off-track-bg)">cell #F2D8DB</div></div>
+<div><div class="sw" style="background:var(--status-done);color:var(--status-done-ink)"><b>◍ Completed</b><span>Sky #88CCFF</span></div><div class="tint" style="background:var(--status-done-bg)">cell #E7F5FF</div></div>
+<div><div class="sw" style="background:var(--status-none);color:var(--status-none-ink)"><b>– No data</b><span>Steel #B8B8B8</span></div><div class="tint" style="background:var(--status-none-bg)">cell #F3F3F3</div></div>
+</div>
+<div class="row"><span class="status status--on-track">On track</span><span class="status status--watch">Watch</span><span class="status status--off-track">Off track</span><span class="status status--done">Completed</span><span class="status status--none">No data</span></div>
+<p class="m" style="margin:12px 0 0">The sign sits in ink on the colour, so light colours keep their contrast. Status colours are also data colours: a chart encodes status or categories, never both.</p>
+</body></html>
