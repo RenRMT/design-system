@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboards · REN Data design system</title><script>document.documentElement.dataset.theme=localStorage.getItem('ren-docs-theme')||'light'</script><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="docs.css"><link rel="stylesheet" href="../dashboards/dashboard.css">
+<style>
+.ex-prev .dash-head,.ex-prev .subject,.ex-prev .dash-foot{position:relative;left:auto;right:auto;top:auto;bottom:auto}
+.ex-prev .dash-head{height:96px;padding:0}
+.ex-prev.canvas{background:var(--dash-canvas)}
+.cardframe{display:block;width:100%;border:1px solid var(--line);border-radius:3px;background:var(--bg)}
+.prev-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;width:100%}
+</style></head>
+<body data-page="dashboards.html"><div class="d-layout"><aside class="d-side" id="side"></aside><main class="d-main" id="main">
+<p class="d-eyebrow">Dashboards</p>
+<h1 class="d-hero">Dashboards</h1>
+<p class="d-lead">The interface around the charts: canvas, grid, status colours and the parts every dashboard page is made of. The same rules ship as a stylesheet for the web and a theme for Power BI.</p>
+
+<section class="d-sec" id="where" data-nav="Where this fits">
+<h2>Where this fits</h2>
+<p class="d-desc">A dashboard needs two kinds of rules. The <a href="https://rendata.nl/style-guide/docs/dashboards/">style guide</a> decides how the data is shown: chart choice, titles on live data, colour that survives filtering, data states. This page decides everything around it, and how to build it. When the two disagree about a chart, the style guide wins.</p>
+<div class="props-wrap"><table class="props">
+<thead><tr><th>Question</th><th>Answered by</th></tr></thead>
+<tbody>
+<tr><td>Which chart, which comparison, which title</td><td>Style guide: <a href="https://rendata.nl/style-guide/docs/dashboards/plan-and-layout/">Plan and layout</a></td></tr>
+<tr><td>What a status means, how colour behaves under filters</td><td>Style guide: <a href="https://rendata.nl/style-guide/docs/dashboards/numbers-and-colour/">Numbers and colour</a></td></tr>
+<tr><td>What an empty or partial tile says, what to test</td><td>Style guide: <a href="https://rendata.nl/style-guide/docs/dashboards/data-states/">Data states and testing</a></td></tr>
+<tr><td>Pages, pickers and filters</td><td>Style guide: <a href="https://rendata.nl/style-guide/docs/dashboards/navigation-and-interaction/">Navigation and interaction</a></td></tr>
+<tr><td>Grid, tiles, header, filters, type sizes, status markers</td><td>This page</td></tr>
+<tr><td>Building it in Power BI</td><td>This page, <a href="#pbi-theme">Power BI</a>, and the theme file</td></tr>
+</tbody></table></div>
+<p class="d-note">Building for a client? Use their brand for the interface and keep the style guide for the charts. The grid and the component list on this page still work; swap the colours and the typeface.</p>
+</section>
+
+<section class="d-sec" id="canvas" data-nav="Canvas and grid" data-group="Foundations">
+<h2>Canvas and grid</h2>
+<p class="d-desc">One canvas size, one grid. 1920 × 1080, sixteen columns of 102px, a 24px margin and a 16px gutter. Every visual starts on a column and spans whole columns. Type coordinates in; never drag.</p>
+<iframe class="cardframe" src="../guidelines/spacing-dashboard.html" title="Dashboard grid" height="480" loading="lazy"></iframe>
+<div class="props-wrap"><table class="props">
+<thead><tr><th>Columns</th><th>Width</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td>3</td><td>338</td><td>KPI tile, four in a row beside the rail</td></tr>
+<tr><td>4</td><td>456</td><td>Filter rail; KPI tile without a rail; narrow support visual</td></tr>
+<tr><td>5 · 6</td><td>574 · 692</td><td>Support visual; half-width table</td></tr>
+<tr><td>7 · 8</td><td>810 · 928</td><td>Main visual or table beside the rail</td></tr>
+<tr><td>10 · 12 · 16</td><td>1164 · 1400 · 1872</td><td>Wide line chart; everything beside the rail; full width</td></tr>
+</tbody></table></div>
+<h3>Two kinds of page</h3>
+<div class="props-wrap"><table class="props">
+<thead><tr><th>Page</th><th>Layout</th><th>Filters</th></tr></thead>
+<tbody>
+<tr><td>Overview</td><td>Header · rail · KPI row (152) · main band (424) · support band (288) · footer</td><td>The rail filters a population: which programmes, which period</td></tr>
+<tr><td>Detail</td><td>Header · subject bar (64) · KPI row (152) · main band (376) · support band · footer. Content starts at y 200</td><td>No rail. The subject bar picks one item, and the pick stays when you change page</td></tr>
+</tbody></table></div>
+<p class="d-note">Eight visuals per page is the maximum. More than eight means there is no main question.</p>
+</section>
+
+<section class="d-sec" id="status" data-nav="Status colours" data-group="Foundations">
+<h2>Status colours</h2>
+<p class="d-desc">Five statuses, each with one colour, one sign and one word. A status is always a square marker with the sign inside and the word beside it, never a colour on its own.</p>
+<iframe class="cardframe" src="../guidelines/colors-status.html" title="Status colours" height="300" loading="lazy"></iframe>
+<ul>
+<li>The sign is drawn in ink on the colour (white on Baltic and Cherry, black on Jasmine, Sky and Steel), so the light colours keep their contrast.</li>
+<li>Cell tints (<code>--status-*-bg</code>) are for table cells and badges. Use the tint or the marker, not both.</li>
+<li>The status colours are also data colours. A chart encodes status or categories, never both. On a page with status, draw category charts in colours that aren't status colours: Teal and its ramp, Coral, Violet or Blush, with Steel for context.</li>
+<li>Completed is Sky rather than a second blue: it stays distinct from On track for every common type of colour blindness (worst case ΔE 29).</li>
+</ul>
+</section>
+
+<section class="d-sec" id="type" data-nav="Type" data-group="Foundations">
+<h2>Type</h2>
+<p class="d-desc">IBM Plex Sans on the web, Calibri in Power BI. Power BI only renders fonts installed on the viewer's machine, and Calibri has the lining, tabular figures the style guide asks for. No Newsreader on a dashboard: one typeface, hierarchy by size and weight.</p>
+<div class="props-wrap"><table class="props">
+<thead><tr><th>Role</th><th>Web</th><th>Power BI</th><th>Weight</th></tr></thead>
+<tbody>
+<tr><td>KPI value</td><td>48px</td><td>36pt</td><td>Bold, tabular</td></tr>
+<tr><td>Page title</td><td>32px</td><td>24pt</td><td>Bold</td></tr>
+<tr><td>Subject title</td><td>28px</td><td>21pt</td><td>Bold</td></tr>
+<tr><td>Visual title</td><td>20px</td><td>15pt</td><td>Semibold (bold in Power BI)</td></tr>
+<tr><td>Body, table cell, filter value</td><td>15–16px</td><td>12pt</td><td>Regular</td></tr>
+<tr><td>Label, subtitle, axis, legend, footer</td><td>14px</td><td>10.5pt</td><td>Regular</td></tr>
+</tbody></table></div>
+<p class="d-note">Nothing smaller than 14px, or 10.5pt, including the source line. On the web, metadata (period, refresh time, source, filter heading) is Plex Mono, as everywhere else in the system.</p>
+</section>
+
+<section class="d-sec" id="header" data-nav="Page header" data-group="Components">
+<h2>Page header</h2>
+<p class="d-desc">Says where you are: the dashboard title, the pages, and the period and refresh time. It sits on the canvas, above a hairline. No coloured band.</p>
+<div class="ex"><div class="ex-prev block canvas"><header class="dash-head"><div><span class="dash-head__kicker">REN Data</span><h1 class="dash-head__title">Programme monitor</h1></div><div class="dash-head__right"><p class="dash-head__meta">Q3 2026 · Refreshed 28 Oct 2026, 06:00</p><nav aria-label="Pages"><ul class="dash-tabs"><li><a href="#header" aria-current="page">Overview</a></li><li><a href="#header">Finance</a></li><li><a href="#header">Results</a></li></ul></nav></div></header></div></div>
+<div class="props-wrap"><table class="props"><thead><tr><th>Part</th><th>Spec</th></tr></thead><tbody>
+<tr><td>Band</td><td>y 0, height 96, full width; 1px <code>--line</code> under it</td></tr>
+<tr><td>Title</td><td>32px bold; the kicker above it is optional</td></tr>
+<tr><td>Period line</td><td>Right-aligned. Period, selection and refresh time, all from the data</td></tr>
+<tr><td>Page tabs</td><td>The Chip underline tab: active page in heading colour, 600, 3px coral underline</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="d-sec" id="rail" data-nav="Filter rail" data-group="Components">
+<h2>Filter rail</h2>
+<p class="d-desc">All filters in one place, on the left of an overview page. At most three filters, Apply and Clear, and the note that says what changed.</p>
+<div class="ex"><div class="ex-prev canvas" style="align-items:stretch"><aside class="tile rail" style="width:320px;min-height:420px" aria-label="Filters"><p class="rail__head">Filters</p><div class="field"><label for="d-period">Period</label><select id="d-period"><option>Q3 2026</option></select></div><div class="field"><label for="d-region">Region</label><select id="d-region"><option>All regions</option></select></div><div class="note" style="margin-top:auto"><span class="note__key">What changed in Q3</span>Water moved from watch to on track.</div><div class="rail__actions" style="margin-top:0"><button class="dbtn dbtn--primary" type="button">Apply filters</button><button class="dbtn dbtn--outline" type="button">Clear filters</button></div></aside></div></div>
+<div class="props-wrap"><table class="props"><thead><tr><th>Part</th><th>Spec</th></tr></thead><tbody>
+<tr><td>Rail</td><td>4 columns (456), full content height, one tile</td></tr>
+<tr><td>Heading</td><td>Mono caps, muted. A heading for the group, not a visual title</td></tr>
+<tr><td>Dropdown</td><td>1px <code>--muted</code> border (3:1 against white), 3px corners, label above in 600</td></tr>
+<tr><td>Apply · Clear</td><td>Primary (coral) and outline buttons, 40px high, square corners. One primary per rail</td></tr>
+<tr><td>Note</td><td>Bottom of the rail, above the buttons. See <a href="#note">Note</a></td></tr>
+</tbody></table></div>
+<p class="d-note">One or two filters and no note? Put them in the header instead, as dropdowns beside the period line.</p>
+</section>
+
+<section class="d-sec" id="kpi" data-nav="KPI tile" data-group="Components">
+<h2>KPI tile</h2>
+<p class="d-desc">The BigNumber card on a canvas: label, value and one line of context. Four in a row, all from the same variant, so their baselines line up.</p>
+<div class="ex"><div class="ex-prev canvas"><div class="prev-row">
+<section class="tile kpi"><span class="kpi__label">Disbursed, 2026 to date</span><span class="kpi__value">€42.6m</span><span class="kpi__context">61% of budget · 74% at this point in 2025</span></section>
+<section class="tile kpi kpi--watch"><span class="kpi__label">Indicators on track</span><span class="kpi__value">64%</span><span class="kpi__context"><span class="status status--watch">Watch</span> · target 70%</span></section>
+<section class="tile kpi"><span class="kpi__label">Budget used</span><span class="kpi__value">61%</span><span class="kpi__context">€42.6m of €69.8m</span><div class="kpi__bar" role="img" aria-label="61% of budget"><span style="width:61%"></span></div></section>
+</div></div></div>
+<div class="props-wrap"><table class="props"><thead><tr><th>Variant</th><th>Spec</th></tr></thead><tbody>
+<tr><td>Plain</td><td>Teal top rule, 4px. Label 14px muted, value 48px bold, context 14px</td></tr>
+<tr><td>Status</td><td>Top rule in the status colour, and a status marker in the context line. The rule never carries the status alone</td></tr>
+<tr><td>Bar</td><td>8px bar from 0 to the target, Teal on Platinum. Fixed ends: an automatic bar is always somewhere between empty and full and says nothing</td></tr>
+<tr><td>Size</td><td>3 columns × 152 beside the rail, 4 columns × 152 without</td></tr>
+</tbody></table></div>
+<p class="d-note">Every value carries a comparison: a target, the previous period, the baseline or the rest of the portfolio. Coral stays the interface accent; it is never a status.</p>
+</section>
+
+<section class="d-sec" id="marker" data-nav="Status marker" data-group="Components">
+<h2>Status marker</h2>
+<p class="d-desc">A square with the sign, then the word. Inline in text and tiles, or as a cell with the tint behind it.</p>
+<div class="ex"><div class="ex-prev"><span class="status status--on-track">On track</span><span class="status status--watch">Watch</span><span class="status status--off-track">Off track</span><span class="status status--done">Completed</span><span class="status status--none">No data</span></div></div>
+<div class="ex"><div class="ex-prev"><span class="status status--cell status--on-track">On track</span><span class="status status--cell status--watch">Watch</span><span class="status status--cell status--off-track">Off track</span><span class="status status--cell status--done">Completed</span><span class="status status--cell status--none">No data</span></div></div>
+<pre data-code>
+&lt;span class="status status--watch"&gt;Watch&lt;/span&gt;
+&lt;span class="status status--cell status--off-track"&gt;Off track&lt;/span&gt;
+</pre>
+</section>
+
+<section class="d-sec" id="subject" data-nav="Subject bar" data-group="Components">
+<h2>Subject bar</h2>
+<p class="d-desc">On every detail page, never on an overview: which item this page is about, its status, where it sits in the list, and the picker for another one.</p>
+<div class="ex"><div class="ex-prev block canvas"><div class="subject"><h2 class="subject__title">Mobile clinics, Tigray</h2><span class="status status--watch">Watch</span><span class="subject__pos">4 of 12</span><span class="field" style="margin-left:auto;flex-direction:row;align-items:center"><select aria-label="Programme"><option>Mobile clinics, Tigray</option></select></span></div></div></div>
+<div class="props-wrap"><table class="props"><thead><tr><th>State</th><th>Title</th><th>Rest of the page</th></tr></thead><tbody>
+<tr><td>One item</td><td>The name, 28px bold, and "4 of 12"</td><td>Normal</td></tr>
+<tr><td>Nothing picked</td><td>"Pick a programme", muted</td><td>Empty state, saying the same</td></tr>
+<tr><td>More than one</td><td>"Pick one programme · 3 selected"</td><td>Empty state</td></tr>
+</tbody></table></div>
+<div class="props-wrap"><table class="props"><thead><tr><th>Items</th><th>Picker</th></tr></thead><tbody>
+<tr><td>Up to about 25</td><td>Dropdown, everything visible</td></tr>
+<tr><td>25 to 500</td><td>Dropdown with search</td></tr>
+<tr><td>More than 500</td><td>No dropdown. Name and position only; readers arrive by clicking through from a filtered table</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="d-sec" id="note" data-nav="Note" data-group="Components">
+<h2>Note</h2>
+<p class="d-desc">"What changed", an explanation, or a warning. The Callout pattern: a rule above and a mono key with a coloured square. No left border, no box.</p>
+<div class="ex"><div class="ex-prev"><div class="prev-row">
+<div class="note"><span class="note__key">What changed in Q3</span>Water moved from watch to on track after the Q2 supply delays cleared.</div>
+<div class="note note--watch"><span class="note__key">Partial period</span>Q4 has 30 of 92 days. Totals will rise.</div>
+<div class="note note--error"><span class="note__key">Not refreshed</span>The finance data didn't load. Last good refresh 27 Oct, 06:00.</div>
+</div></div></div>
+<p class="d-note">Notes that depend on the data come from the data: a table of notes by item and period, picked by the same filters as the page. A typed note is true until the next refresh.</p>
+</section>
+
+<section class="d-sec" id="states" data-nav="Empty and error states" data-group="Components">
+<h2>Empty and error states</h2>
+<p class="d-desc">Three kinds of empty, three messages. The tile keeps its title; the message replaces the chart. Never the tool's default message.</p>
+<div class="ex"><div class="ex-prev"><div class="prev-row">
+<section class="tile" style="min-height:180px"><h3 class="tile__title">Indicator results</h3><div class="empty"><p class="empty__msg">No data</p><p class="empty__why">This programme reports twice a year. Next report due 15 Jan.</p></div></section>
+<section class="tile" style="min-height:180px"><h3 class="tile__title">Indicator results</h3><div class="empty"><p class="empty__msg">No results for these filters</p><p class="empty__why">Nothing in East Africa for Q3. Clear the region filter to see all regions.</p></div></section>
+<section class="tile" style="min-height:180px"><h3 class="tile__title">Indicator results</h3><div class="empty empty--error"><p class="empty__msg">The figures didn't refresh</p><p class="empty__why">Last good refresh 27 Oct 2026, 06:00.</p></div></section>
+</div></div></div>
+<div class="props-wrap"><table class="props"><thead><tr><th>State</th><th>Means</th><th>Says</th></tr></thead><tbody>
+<tr><td>No data</td><td>Nothing was measured</td><td>"No data", and why</td></tr>
+<tr><td>No results</td><td>There is data, but the filters exclude it</td><td>"No results for these filters", and how to get out</td></tr>
+<tr><td>Error</td><td>Something broke</td><td>What failed, and the last good refresh. Cherry hatching</td></tr>
+<tr><td>No access</td><td>The reader may not see this data</td><td>Empty with an explanation. Never an error, and never everything</td></tr>
+</tbody></table></div>
+<p class="d-note">A refresh warning goes in one place: one tile, or one line under the header. The same message twice on a screen reads as two problems.</p>
+</section>
+
+<section class="d-sec" id="table" data-nav="Table" data-group="Components">
+<h2>Table</h2>
+<p class="d-desc">Ruled, not filled. A bold header over a dark rule, hairlines between rows, a 2px rule over the total. A table is a full visualisation: use one whenever readers need to check, copy or forward the numbers.</p>
+<div class="ex"><div class="ex-prev block"><table class="dt"><thead><tr><th>Programme</th><th>Status</th><th class="num">Budget, € m</th><th class="num">Disbursed</th></tr></thead><tbody><tr><td>Cash for nutrition, Sahel</td><td><span class="status status--off-track">Off track</span></td><td class="num">6.4</td><td class="num">38%</td></tr><tr><td>Mobile clinics, Tigray</td><td><span class="status status--watch">Watch</span></td><td class="num">4.8</td><td class="num">55%</td></tr><tr><td>Legal aid for refugees, Uganda</td><td><span class="status status--none">No data</span></td><td class="num">2.2</td><td class="num muted">–</td></tr></tbody><tfoot><tr><td colspan="2">All 31 programmes</td><td class="num">69.8</td><td class="num">61%</td></tr></tfoot></table></div></div>
+<ul>
+<li>Numbers right-aligned, tabular figures; text left-aligned.</li>
+<li>Sort by value, not alphabet, unless the rows have their own order: periods, levels, statuses.</li>
+<li>Fixed column widths. Automatic widths jump on every filter change.</li>
+<li>A missing value is a dash, not a zero.</li>
+</ul>
+</section>
+
+<section class="d-sec" id="footer" data-nav="Footer" data-group="Components">
+<h2>Footer</h2>
+<p class="d-desc">One line at y 1032: source, the date the data refers to, and when it was refreshed. Always there, always from the data, so a screenshot pasted into a memo still says what it shows.</p>
+<div class="ex"><div class="ex-prev block canvas"><footer class="dash-foot"><span>Source: Example programme data · Data as of 30 Sep 2026 · Refreshed 28 Oct 2026, 06:00</span><span>REN Data dashboard standard</span></footer></div></div>
+</section>
+
+<section class="d-sec" id="example" data-nav="Example page">
+<h2>Example page</h2>
+<p class="d-desc">An overview page built only from the parts above: rail, KPI row, main and support bands, table, footer.</p>
+<div class="frame"><div class="frame-bar"><span>ui_kits/dashboard/index.html</span><a href="../ui_kits/dashboard/index.html" target="_blank" rel="noopener">Open the dashboard full screen</a></div><iframe src="../ui_kits/dashboard/index.html" title="Example dashboard" loading="lazy"></iframe></div>
+<pre data-code>
+&lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;link rel="stylesheet" href="dashboards/dashboard.css"&gt;
+
+&lt;div class="dash"&gt;
+  &lt;header class="dash-head"&gt;…&lt;/header&gt;
+  &lt;div class="dash-grid"&gt;
+    &lt;aside class="tile rail span-4 rows-all"&gt;…&lt;/aside&gt;
+    &lt;section class="tile kpi span-3"&gt;…&lt;/section&gt;
+    &lt;section class="tile span-7"&gt;…&lt;/section&gt;
+  &lt;/div&gt;
+  &lt;footer class="dash-foot"&gt;…&lt;/footer&gt;
+&lt;/div&gt;
+</pre>
+</section>
+
+<section class="d-sec" id="pbi-theme" data-nav="Theme file" data-group="Power BI">
+<h2>Power BI theme</h2>
+<p class="d-desc"><a href="../dashboards/powerbi/ren-data.theme.json">ren-data.theme.json</a> sets the data colours in order, Calibri at every text size, white tiles with a 1px hairline and no shadow, 3px corners, 16px padding, ruled tables, coral buttons, underline page tabs and the canvas colour. Apply it first, before any visual exists: a theme doesn't override formatting a visual already has.</p>
+<div class="props-wrap"><table class="props"><thead><tr><th>The theme can't set</th><th>So you</th></tr></thead><tbody>
+<tr><td>Positions and sizes</td><td>Type them in from the grid. Every row ends at 1896</td></tr>
+<tr><td>Conditional formatting</td><td>Set status colours per visual, from a measure that returns a hex code from the status table</td></tr>
+<tr><td>Category colours by value</td><td>Store each category's colour in a column and apply it with conditional formatting, so filters don't reshuffle colours</td></tr>
+<tr><td>Header, rail, notes</td><td>Build them from shapes and text boxes, group them, and copy the group to each page</td></tr>
+<tr><td>Data bars, sparklines, target lines</td><td>Set per visual. Data bars run from 0 to the target, never automatic</td></tr>
+<tr><td>Alt text</td><td>Write one sentence per visual: what it shows and what it means</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="d-sec" id="pbi-build" data-nav="Building the parts" data-group="Power BI">
+<h2>Building the parts</h2>
+<div class="props-wrap"><table class="props"><thead><tr><th>Part</th><th>Power BI object</th></tr></thead><tbody>
+<tr><td>Page header</td><td>Text boxes for title and period line (both from measures), page navigator for the tabs, a 1px line shape under them</td></tr>
+<tr><td>Filter rail</td><td>Rectangle shape as the tile, at most three slicers (dropdown or vertical list), an Apply all slicers button and a Clear button on a bookmark</td></tr>
+<tr><td>KPI tile, plain or status</td><td>Card (new): callout value, label, reference label from a measure. Accent bar for the status colour</td></tr>
+<tr><td>KPI tile with bar, sparkline or marker</td><td>A one-row table with every bit of chrome turned off. Card (new) can't draw these; don't mix the two in one row</td></tr>
+<tr><td>Status marker</td><td>A measure that returns the sign (✓ ! ✕ – ◍), coloured with conditional formatting, and the word in the next column</td></tr>
+<tr><td>Subject bar</td><td>Shape, text boxes from measures, and one single-select slicer synced across all detail pages</td></tr>
+<tr><td>Empty and error states</td><td>One Card (new) on top of the visual with a text measure that is blank when there is data</td></tr>
+<tr><td>Footer</td><td>One text box, filled from measures</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="d-sec" id="pbi-limits" data-nav="Where Power BI differs" data-group="Power BI">
+<h2>Where Power BI differs</h2>
+<p class="d-desc">Decided once, for every report. Don't work around these per file.</p>
+<div class="props-wrap"><table class="props"><thead><tr><th>In the system</th><th>In Power BI</th></tr></thead><tbody>
+<tr><td>IBM Plex Sans and Plex Mono</td><td>Calibri for everything, metadata included</td></tr>
+<tr><td>Semibold (600)</td><td>Bold. Power BI has regular and bold only</td></tr>
+<tr><td>Square status marker with the sign inside</td><td>The sign alone in the status colour. Watch, Completed and No data are too light for text, so they get an ink sign on the tinted cell</td></tr>
+<tr><td>Teal top rule on a KPI tile</td><td>The accent bar, wherever your release puts it</td></tr>
+<tr><td>3px corners everywhere</td><td>3px on visuals, shapes and slicers; table cells and data bars stay square</td></tr>
+<tr><td>Legend in status order</td><td>Legend off, and a text box with the statuses in order</td></tr>
+<tr><td>Coral focus ring</td><td>Power BI's own ring. Don't rebuild it with a shape: it won't work with a keyboard</td></tr>
+<tr><td>Dark mode</td><td>Light only</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="d-sec" id="checklist" data-nav="Before you publish">
+<h2>Before you publish</h2>
+<ul>
+<li>Every visual starts on a column and every row ends at 1896.</li>
+<li>Four KPI tiles of one variant, each with a comparison.</li>
+<li>Every status has a colour, a sign and a word.</li>
+<li>Header period line, footer and notes come from the data. Nothing typed that will go out of date.</li>
+<li>Test the opening view, the deepest single selection, a selection with no results, the first and the latest (partial) period, a reader without access, and a screenshot without context.</li>
+<li>Alt text on every visual. Fixed column widths on every table.</li>
+<li>No colour typed in by hand that belongs in the theme. If you need one, the theme is missing a case.</li>
+</ul>
+</section>
+</main></div><script src="docs.js"></script><script>DOCS.init()</script></body></html>

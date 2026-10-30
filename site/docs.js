@@ -1,6 +1,6 @@
 (function(){
 var NS='RENDataDesignSystem_372f57';
-var NAV=[['index.html','Overview'],['tokens.html','Tokens'],['components.html','Components'],['patterns.html','Patterns'],['pages.html','Pages']];
+var NAV=[['index.html','Overview'],['tokens.html','Tokens'],['components.html','Components'],['patterns.html','Patterns'],['dashboards.html','Dashboards'],['pages.html','Pages']];
 var root=document.documentElement;
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 var RE=/(\/\/[^\n]*|\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->)|("(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`)|(<\/?)([A-Za-z][\w.]*)|\b(const|let|var|function|return|true|false|null|import|from|export|new)\b|([A-Za-z][\w-]*)(?==[{"])/g;
